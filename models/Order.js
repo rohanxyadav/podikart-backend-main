@@ -79,7 +79,7 @@ const orderSchema = new mongoose.Schema(
 );
 
 // Pre-save hook to handle payment and delivery automation
-orderSchema.pre('save', function (next) {
+orderSchema.pre('save', async function () {
     if (this.isModified('status')) {
         if (this.status === 'Done') {
             this.isPaid = true;
@@ -88,7 +88,6 @@ orderSchema.pre('save', function (next) {
             this.deliveredAt = Date.now();
         }
     }
-    next();
 });
 
 const Order = mongoose.model("Order", orderSchema);
