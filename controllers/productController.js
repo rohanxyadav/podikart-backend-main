@@ -106,7 +106,7 @@ const createProduct = asyncHandler(async (req, res) => {
 
     const {
         name, slug, shortDescription, description, category,
-        rating, reviewCount, trialPrice, valuePrice,
+        rating, reviewCount, trialPrice, valuePrice, weight,
         ingredients, benefits, usage, shelfLife, featured,
         faqs, reviews
     } = req.body;
@@ -134,6 +134,7 @@ const createProduct = asyncHandler(async (req, res) => {
         reviewCount: Number(reviewCount) || 0,
         trialPrice: Number(trialPrice) || 0,
         valuePrice: Number(valuePrice) || 0,
+        weight: Number(weight) || 0,
         ingredients: parseList(ingredients),
         benefits: parseList(benefits),
         usage: parseList(usage),
@@ -170,7 +171,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (product) {
         const {
             name, slug, shortDescription, description, category,
-            trialPrice, valuePrice, ingredients, benefits, usage,
+            trialPrice, valuePrice, weight, ingredients, benefits, usage,
             shelfLife, featured, isHidden, rating, faqs, reviews
         } = req.body;
 
@@ -192,6 +193,7 @@ const updateProduct = asyncHandler(async (req, res) => {
         product.category = category || product.category;
         product.trialPrice = trialPrice !== undefined ? Number(trialPrice) : product.trialPrice;
         product.valuePrice = valuePrice !== undefined ? Number(valuePrice) : product.valuePrice;
+        product.weight = weight !== undefined ? Number(weight) : product.weight;
         product.shelfLife = shelfLife || product.shelfLife;
         product.featured = featured !== undefined ? (featured === 'true' || featured === true) : product.featured;
         product.isHidden = isHidden !== undefined ? (isHidden === 'true' || isHidden === true) : product.isHidden;
