@@ -13,6 +13,7 @@ import orderRoutes from './routes/orderRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
 import partnerRoutes from './routes/partnerRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/contacts', contactRoutes);
 app.use('/api/partners', partnerRoutes);
+app.use('/api/blogs', blogRoutes);
 
 // Base route
 app.get('/', (req, res) => {
